@@ -7,6 +7,13 @@ const currencies = require('../lib/currencies.json');
 
 const API = 'https://api.fixer.io/latest';
 
+/** 
+ * 
+ * Do the actual conversion by using the API response and the ../lib/currencies.json file
+ * @param {Object} configuration
+ * Configuration = {amount, to, from, response, loading}
+ *  
+ */
 const convert = configuration => {
   const {amount, to, from, response, loading} = configuration;
 
@@ -34,6 +41,14 @@ const convert = configuration => {
   process.exit(1);
 };
 
+/** 
+ * 
+ * Exported function of the module, it is an async function .
+ * It calls the API and then calls the aforementioned convert function
+ * @param {Object} command
+ * command = {amount, to, from}
+ *  
+ */
 const cash = async command => {
   const amount = command.amount;
   const from = command.from.toUpperCase();
